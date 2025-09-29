@@ -24,9 +24,13 @@ pub enum Role {
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum OutputStatus {
-    InProgress,
     Completed,
+    Failed,
+    InProgress,
+    Cancelled,
+    Queued,
     Incomplete,
+
 }
 
 /// Input payload: raw text or structured context items.
@@ -1435,6 +1439,7 @@ pub struct Response {
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum Status {
+    Queued,
     Completed,
     Failed,
     InProgress,
